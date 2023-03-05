@@ -1,0 +1,65 @@
+<div>
+  <div>
+    <p class="h1 text-uppercase">Users</p>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="d-flex">
+    <div class="flex-grow-1">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>search</mat-label>
+        <input matInput placeholder="enter brand names or id's here" type="text">
+        <button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div class="p-1 flex-shrink-1">
+      <button mat-raised-button color="primary" class="text-uppercase ms-5">Add User</button>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div>
+    <table mat-table [dataSource]="dataSource" class="">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      </ng-container>
+
+      <!-- edit action -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+
+      <!-- delete action -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
