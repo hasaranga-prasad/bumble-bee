@@ -2,7 +2,12 @@
 
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-
+// regular style toast
+@import 'ngx-toastr/toastr';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'ngx-toastr/toastr-bs5-alert';
 // src/styles.scss
 
 
@@ -34,4 +39,8 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.app-button {
+  width: 100px;
 }

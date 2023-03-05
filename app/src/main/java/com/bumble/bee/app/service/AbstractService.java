@@ -11,12 +11,16 @@ import java.util.*;
 
 @Slf4j
 @Getter(AccessLevel.PROTECTED)
-public abstract class AbstractService<ENTITY extends Entity, KEY> {
+public abstract class AbstractService<ENTITY extends Entity<KEY>, KEY> {
 
     private final IRepository<ENTITY, KEY> repository;
 
     public AbstractService(IRepository<ENTITY, KEY> repository) {
         this.repository = repository;
+    }
+
+    public boolean exists(KEY id) {
+        return this.getRepository().existsById(id);
     }
 
     public Optional<ENTITY> findById(KEY id) {
@@ -34,6 +38,7 @@ public abstract class AbstractService<ENTITY extends Entity, KEY> {
         if (Objects.isNull(entity)) {
             throw new IllegalArgumentException(String.format("'%s' entity cannot be null", this.getEntityClass().getSimpleName()));
         }
+        log.info("Updating entity with id: {}", entity.getId());
         return this.getRepository().save(entity);
     }
 

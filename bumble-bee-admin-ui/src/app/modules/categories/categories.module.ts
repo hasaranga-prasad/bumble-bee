@@ -11,7 +11,7 @@ import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
   declarations: [
-    CategoriesComponent
+    CategoriesComponent,
   ],
   imports: [
     CommonModule,
@@ -19,7 +19,8 @@ import { MatTableModule } from "@angular/material/table";
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatTableModule
-  ]
+    MatTableModule,
+  ],
 })
-export class CategoriesModule { }
+export class CategoriesModule {
+}

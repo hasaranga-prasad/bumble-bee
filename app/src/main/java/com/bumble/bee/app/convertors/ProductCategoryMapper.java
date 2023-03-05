@@ -5,7 +5,7 @@ import com.bumble.bee.app.models.dto.ProductCategoryDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface ProductCategoryMapper extends IConverter<ProductCategoryDto, ProductCategory> {
+public interface ProductCategoryMapper extends IConverter<Long, ProductCategoryDto, ProductCategory> {
 
     @Override
     ProductCategoryDto toDto(ProductCategory entity);

@@ -1,0 +1,21 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>Brand</h2>
+  <mat-dialog-content class="mat-typography pt-2">
+    <form [formGroup]="dialogForm">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" placeholder="Brand name">
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput rows="6" formControlName="description"></textarea>
+      </mat-form-field>
+    </form>
+
+    <mat-dialog-actions align="end" class="pe-0">
+      <button mat-stroked-button class="app-button" (click)="cancel()">Discard</button>
+      <button mat-raised-button color="primary" class="app-button" (click)="save()">Save</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>

@@ -5,7 +5,7 @@ import com.bumble.bee.app.models.dto.UserDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper extends IConverter<UserDto, User> {
+public interface UserMapper extends IConverter<Long, UserDto, User> {
 
     @Override
     UserDto toDto(User entity);

@@ -14,12 +14,22 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HttpClientModule } from "@angular/common/http";
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import { NgxsModule } from "@ngxs/store";
+import { BrandState } from "./modules/brands/brand.state";
+import { ToastrModule } from "ngx-toastr";
+import { CategoryState } from "./modules/categories/category.state";
+import { ProductState } from "./modules/products/product.state";
+import { UserState } from "./modules/users/user.state";
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +42,20 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MatInputModule,
     MatButtonModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
+    MatDialogModule,
+    NgxsModule.forRoot([
+      BrandState,
+      CategoryState,
+      ProductState,
+      UserState,
+    ]),
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [ConfirmationDialogComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

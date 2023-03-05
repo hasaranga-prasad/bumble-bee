@@ -7,8 +7,7 @@ import java.util.*;
 
 @Data
 @jakarta.persistence.Entity
-@Table(name = "product_category")
-public class ProductCategory implements Entity {
+public class ProductCategory implements Entity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

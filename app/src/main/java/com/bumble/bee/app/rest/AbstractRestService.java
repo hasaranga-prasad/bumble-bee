@@ -12,12 +12,12 @@ import org.springframework.lang.NonNull;
 import java.util.*;
 
 @Slf4j
-public abstract class AbstractRestService<KEY, DTO extends Dto<KEY>, ENTITY extends Entity> implements RestService<KEY, DTO> {
+public abstract class AbstractRestService<KEY, DTO extends Dto<KEY>, ENTITY extends Entity<KEY>> implements RestService<KEY, DTO> {
 
     private final IService<ENTITY, KEY> service;
-    private final IConverter<DTO, ENTITY> mapper;
+    private final IConverter<KEY, DTO, ENTITY> mapper;
 
-    public AbstractRestService(IService<ENTITY, KEY> service, Class<? extends IConverter<DTO, ENTITY>> converter) {
+    public AbstractRestService(IService<ENTITY, KEY> service, Class<? extends IConverter<KEY, DTO, ENTITY>> converter) {
         this.service = service;
         this.mapper = Mappers.getMapper(converter);
     }
@@ -42,30 +42,41 @@ public abstract class AbstractRestService<KEY, DTO extends Dto<KEY>, ENTITY exte
 
     @Override
     public DTO create(DTO dto) {
+        log.info("[{}] Creating entity", this.getEntityClass().getSimpleName());
         var entity = this.convertToEntity(dto);
-        return this.convertToDto(this.service.create(entity));
+        var result = this.convertToDto(this.service.create(entity));
+        log.info("[{}] Entity with id: {} created successfully", this.getEntityClass().getSimpleName(), result.getId());
+        return result;
     }
 
     @Override
-    public DTO update(DTO dto) {
+    public DTO update(KEY id, DTO dto) {
+        log.info("[{}] Updating entity with id: {}", this.getEntityClass().getSimpleName(), id);
+        var byId = this.findById(id);
         var entity = this.convertToEntity(dto);
-        return this.convertToDto(this.service.create(entity));
+        entity.setId(byId.getId());
+        var result = this.convertToDto(this.service.update(entity));
+        log.info("[{}] Entity with id: {} updated successfully", this.getEntityClass().getSimpleName(), result.getId());
+        return result;
     }
 
     @Override
     public void delete(KEY key) {
+        log.info("[{}] Deleting entity with id: {}", this.getEntityClass().getSimpleName(), key);
         this.findById(key);
         this.service.delete(key);
     }
 
     @Override
     public DTO findById(KEY key) {
+        log.info("[{}] Finding entity with id: {}", this.getEntityClass().getSimpleName(), key);
         return this.service.findById(key).map(this::convertToDto)
                            .orElseThrow(() -> this.entityNotFoundException(key));
     }
 
     @Override
     public Collection<DTO> getAll() {
+        log.info("[{}] Getting all entities", this.getEntityClass().getSimpleName());
         return this.service.getAll().stream().map(this::convertToDto)
                            .toList();
     }

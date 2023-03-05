@@ -3,7 +3,7 @@ package com.bumble.bee.app.convertors;
 import com.bumble.bee.app.models.dao.Entity;
 import com.bumble.bee.app.models.dto.Dto;
 
-public interface IConverter<DTO extends Dto, ENTITY extends Entity> {
+public interface IConverter<KEY, DTO extends Dto<KEY>, ENTITY extends Entity<KEY>> {
 
     DTO toDto(ENTITY entity);
 

@@ -20,7 +20,7 @@ import { MatTableModule } from "@angular/material/table";
     MatIconModule,
     MatButtonModule,
     MatTableModule,
-  ]
+  ],
 })
 export class ProductsModule {
 }

@@ -5,13 +5,13 @@ import { ProductComponent } from "./components/product/product.component";
 const routes: Routes = [
   {
     path: '',
-    component: ProductComponent
+    component: ProductComponent,
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class ProductsRoutingModule {
 }

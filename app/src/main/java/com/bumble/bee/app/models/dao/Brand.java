@@ -7,8 +7,7 @@ import java.util.*;
 
 @Data
 @jakarta.persistence.Entity
-@Table(name = "brand")
-public class Brand implements Entity {
+public class Brand implements Entity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +19,7 @@ public class Brand implements Entity {
     @Column(length = 512)
     private String description;
 
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Product> products;
 
     @Override

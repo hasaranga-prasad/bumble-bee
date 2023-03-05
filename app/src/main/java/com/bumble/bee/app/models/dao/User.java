@@ -1,14 +1,16 @@
 package com.bumble.bee.app.models.dao;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.time.Instant;
 
 @Data
 @jakarta.persistence.Entity
-@Table(name = "user")
-public class User implements Entity {
+public class User implements Entity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

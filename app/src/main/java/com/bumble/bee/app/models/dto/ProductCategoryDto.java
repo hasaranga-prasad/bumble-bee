@@ -1,6 +1,7 @@
 package com.bumble.bee.app.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import java.util.*;
 @Data
 public class ProductCategoryDto implements Dto<Long> {
 
-    @NotBlank(groups = {ValidationGroups.Update.class}, message = "Product Category Id is mandatory")
+    @NotNull(groups = {ValidationGroups.Update.class}, message = "Product Category Id is mandatory")
     private Long id;
 
     @NotBlank(message = "Name is mandatory")
