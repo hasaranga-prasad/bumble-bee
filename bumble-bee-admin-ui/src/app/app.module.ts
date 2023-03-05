@@ -19,7 +19,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   declarations: [
     AppComponent,
     MainComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +32,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MatInputModule,
     MatButtonModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}
