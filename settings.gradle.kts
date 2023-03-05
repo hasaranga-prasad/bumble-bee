@@ -15,3 +15,4 @@ pluginManagement {
 
 rootProject.name = "bumble-bee"
 include("app")
+include("bumble-bee-admin-ui")

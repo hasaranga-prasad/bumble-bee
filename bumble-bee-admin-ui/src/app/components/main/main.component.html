@@ -1,0 +1,42 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <h1 class="example-app-name">Bumble Bee</h1>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="sidenav"
+                 [mode]="'side'"
+                 opened="true"
+                 fixedTopGap="56">
+
+      <mat-nav-list>
+        <mat-list-item routerLink="/products">
+          <mat-icon matListItemIcon>folder</mat-icon>
+          <div matListItemTitle>Products</div>
+        </mat-list-item>
+
+        <mat-list-item routerLink="/categories">
+          <mat-icon matListItemIcon>folder</mat-icon>
+          <div matListItemTitle>Categories</div>
+        </mat-list-item>
+
+        <mat-list-item routerLink="/brands">
+          <mat-icon matListItemIcon>folder</mat-icon>
+          <div matListItemTitle>Brands</div>
+        </mat-list-item>
+
+        <mat-list-item routerLink="/users">
+          <mat-icon matListItemIcon>folder</mat-icon>
+          <div matListItemTitle>Users</div>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="container p-5">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>
