@@ -1,23 +1,18 @@
 package com.bumble.bee.app.rest.controller;
 
+import com.bumble.bee.app.models.dao.Product;
 import com.bumble.bee.app.models.dto.ProductDto;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.bumble.bee.app.rest.AbstractRestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/products")
-public class ProductRestController {
+public class ProductRestController extends AbstractEntityRestController<Long, ProductDto, Product> {
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> findById(@PathVariable Long id) {
-        return null;
+    @Autowired
+    public ProductRestController(AbstractRestService<Long, ProductDto, Product> restService) {
+        super(restService);
     }
-
-    public ResponseEntity<ProductDto> create(ProductDto productDto) {
-        return null;
-    }
-
 }

@@ -6,7 +6,8 @@ import lombok.Data;
 import java.time.Instant;
 
 @Data
-@jakarta.persistence.Entity(name = "user")
+@jakarta.persistence.Entity
+@Table(name = "user")
 public class User implements Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -4,6 +4,8 @@ server:
     context-path: /
 
 spring:
+  devtools:
+    add-properties: false
   data:
     jdbc:
       repositories:
