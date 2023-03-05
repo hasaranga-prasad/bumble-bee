@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Entity } from "../entity/entity";
-import { catchError, Observable, throwError } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { Location } from '@angular/common';
 import { environment } from "../../environments/environment";
 
@@ -20,7 +20,7 @@ export class AbstractBumbleBeeService<ENTITY extends Entity> {
         observe: 'body',
         headers: this.headers,
       },
-    ).pipe(catchError(this.error));
+    );
   }
 
   findEntityById(id: any): Observable<ENTITY> {
@@ -30,7 +30,7 @@ export class AbstractBumbleBeeService<ENTITY extends Entity> {
         observe: 'body',
         headers: this.headers,
       },
-    ).pipe(catchError(this.error));
+    );
   }
 
 
@@ -42,11 +42,10 @@ export class AbstractBumbleBeeService<ENTITY extends Entity> {
         observe: 'body',
         headers: this.headers,
       },
-    ).pipe(catchError(this.error));
+    );
   }
 
   updateEntity(id: any, entity: ENTITY): Observable<ENTITY> {
-    console.log("updateEntity: " + id + " " + entity)
     return this.httpClient.put<ENTITY>(
       Location.joinWithSlash(this.url, this.endpoint),
       entity,
@@ -54,7 +53,7 @@ export class AbstractBumbleBeeService<ENTITY extends Entity> {
         observe: 'body',
         headers: this.headers,
       },
-    ).pipe(catchError(this.error));
+    );
   }
 
   deleteEntity(id: any) {
@@ -64,7 +63,7 @@ export class AbstractBumbleBeeService<ENTITY extends Entity> {
         observe: 'body',
         headers: this.headers,
       },
-    ).pipe(catchError(this.error));
+    );
   }
 
   // Handle Errors

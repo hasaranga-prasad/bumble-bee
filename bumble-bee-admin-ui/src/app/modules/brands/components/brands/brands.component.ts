@@ -2,9 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Brand } from "../../../../entity/entity";
 import { BrandService } from "../../services/brand.service";
 import { MatTableDataSource } from "@angular/material/table";
-import { Subscription } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 import { BrandDialogComponent, BrandDialogData } from "../brand-dialog/brand-dialog.component";
+import { ConfirmationDialogComponent } from "../../../../components/confirmation-dialog/confirmation-dialog.component";
+import { Store } from "@ngxs/store";
+import { AddBrand, DeleteBrand, FetchAllBrands, UpdateBrand } from "../../brand.actions";
 
 @Component({
   selector: 'app-brands',
@@ -16,15 +19,17 @@ export class BrandsComponent implements OnInit, OnDestroy {
   public readonly displayedColumns: string[] = ['id', 'name', 'description', 'edit', 'delete'];
   public dataSource: MatTableDataSource<Brand> = new MatTableDataSource<Brand>([]);
 
+  private _brands: Observable<Brand[]>;
+
   private subscription?: Subscription;
 
-  constructor(private service: BrandService, public dialog: MatDialog) {
+  constructor(private service: BrandService, public dialog: MatDialog, private store: Store) {
+    this._brands = this.store.select(state => state.brands.entities);
   }
 
   ngOnInit(): void {
-    this.subscription = this.service.findAllEntities().subscribe((brands: Brand[]) => {
-      this.dataSource.data = brands;
-    });
+    this.store.dispatch(new FetchAllBrands());
+    this.subscription = this._brands.subscribe((brands: Brand[]) => this.dataSource.data = brands);
   }
 
   ngOnDestroy(): void {
@@ -39,6 +44,14 @@ export class BrandsComponent implements OnInit, OnDestroy {
     this.openDialog('update', entity);
   }
 
+  deleteBrand(entity: Brand): void {
+    this.dialog.open(ConfirmationDialogComponent).afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.store.dispatch(new DeleteBrand(entity.id));
+      }
+    });
+  }
+
   private openDialog(type: string, entity?: Brand): void {
     const dialogRef = this.dialog.open(BrandDialogComponent, {
       data: {
@@ -50,21 +63,9 @@ export class BrandsComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((result: BrandDialogData) => {
       if (result && result.entity) {
         if (result.type === 'create') {
-          this.service.createEntity(result.entity).subscribe((brand: Brand) => {
-            this.dataSource.data.push(brand);
-            this.dataSource.data = this.dataSource.data.slice();
-          });
+          this.store.dispatch(new AddBrand(result.entity));
         } else if (result.type === 'update') {
-          console.log('update ', result)
-          this.service.updateEntity(result.entity.id, result.entity).subscribe((brand: Brand) => {
-            this.dataSource.data = this.dataSource.data.map((item: Brand) => {
-              if (item.id === brand.id) {
-                return brand;
-              } else {
-                return item;
-              }
-            });
-          });
+          this.store.dispatch(new UpdateBrand(result.entity));
         } else {
           console.log('unknown type ', result);
         }

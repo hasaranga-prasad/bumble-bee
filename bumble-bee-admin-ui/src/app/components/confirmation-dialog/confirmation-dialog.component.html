@@ -1,0 +1,11 @@
+<div>
+  <h1 mat-dialog-title>Confirm</h1>
+  <mat-dialog-content>
+    <p>Are you sure you want to perform this action? But remeber you can undo this.</p>
+
+    <mat-dialog-actions align="end" class="pe-0">
+      <button mat-raised-button [mat-dialog-close]="false">No, Cancel</button>
+      <button mat-raised-button color="warn" [mat-dialog-close]="true">Yes, Continue</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>
