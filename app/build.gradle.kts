@@ -38,6 +38,7 @@ dependencies {
     implementation("org.apache.commons:commons-text:1.10.0")
     implementation("org.apache.commons:commons-collections4:4.4")
     implementation("commons-io:commons-io:2.11.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
 
     implementation("org.mapstruct:mapstruct:1.5.3.Final")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")

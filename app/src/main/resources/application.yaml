@@ -25,3 +25,9 @@ spring:
   sql:
     init:
       mode: always
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    operationsSor ter: method
+    path: /swagger-ui.html
