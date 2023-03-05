@@ -7,6 +7,7 @@ import java.util.*;
 
 @Data
 @jakarta.persistence.Entity
+@Table(name = "brand")
 public class Brand implements Entity {
 
     @Id

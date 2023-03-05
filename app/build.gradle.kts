@@ -6,18 +6,15 @@ plugins {
 
 group = "com.bumble.bee"
 version = "1.0.0"
+java.sourceCompatibility = JavaVersion.VERSION_17
+java.targetCompatibility = JavaVersion.VERSION_17
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
     }
 }
-
-//configurations {
-//    compileOnly {
-//        extendsFrom(configurations.annotationProcessor.get())
-//    }
-//}
 
 
 repositories {

@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 @jakarta.persistence.Entity
+@Table(name = "product")
 public class Product implements Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
