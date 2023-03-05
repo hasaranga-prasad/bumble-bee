@@ -6,11 +6,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface BrandMapper extends IConverter<BrandDto, Brand> {
+public interface BrandMapper extends IConverter<Long, BrandDto, Brand> {
 
     @Override
     BrandDto toDto(Brand entity);
-
 
     @Mapping(target = "id", ignore = true)
     @Override

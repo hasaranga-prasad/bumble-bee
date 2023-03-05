@@ -4,7 +4,9 @@ import com.bumble.bee.app.models.dao.Entity;
 
 import java.util.*;
 
-public interface IService<ENTITY extends Entity, KEY> {
+public interface IService<ENTITY extends Entity<KEY>, KEY> {
+
+    boolean exists(KEY id);
 
     Optional<ENTITY> findById(KEY id);
 

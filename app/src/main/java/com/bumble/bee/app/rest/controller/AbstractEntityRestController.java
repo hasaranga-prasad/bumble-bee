@@ -16,7 +16,7 @@ import java.util.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Getter(AccessLevel.PROTECTED)
-public abstract class AbstractEntityRestController<KEY, DTO extends Dto<KEY>, ENTITY extends Entity> {
+public abstract class AbstractEntityRestController<KEY, DTO extends Dto<KEY>, ENTITY extends Entity<KEY>> {
 
     private final AbstractRestService<KEY, DTO, ENTITY> restService;
 
@@ -41,7 +41,7 @@ public abstract class AbstractEntityRestController<KEY, DTO extends Dto<KEY>, EN
 
     @PutMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<DTO> updateEntity(@Validated(ValidationGroups.Update.class) @RequestBody DTO dto) {
-        return ResponseEntity.ok(this.getRestService().create(dto));
+        return ResponseEntity.ok(this.getRestService().update(dto.getId(), dto));
     }
 
     @DeleteMapping(value = "/{id}", produces = APPLICATION_JSON_VALUE)

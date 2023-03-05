@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 @jakarta.persistence.Entity
-@Table(name = "product")
-public class Product implements Entity {
+public class Product implements Entity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
