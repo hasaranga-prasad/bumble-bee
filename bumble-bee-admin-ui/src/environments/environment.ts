@@ -4,6 +4,16 @@
 
 export const environment = {
   production: false,
+  version: '0.0.1',
+  api: {
+    url: 'http://localhost:8088',
+    endpoints: {
+      brands: 'brands',
+      categories: 'categories',
+      products: 'products',
+      users: 'users',
+    },
+  },
 };
 
 /*
