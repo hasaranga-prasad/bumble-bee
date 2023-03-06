@@ -20,13 +20,13 @@ public class ProductDto implements Dto<Long> {
 
     private byte[] image;
 
-    @NotBlank(message = "Price is mandatory")
+    @NotNull(message = "Price is mandatory")
     @Min(value = 0, message = "Price must be greater than 0")
     private Double price;
 
-    @NotBlank(message = "Category is mandatory")
+    @NotNull(message = "Category is mandatory")
     private ProductCategoryDto category;
 
-    @NotBlank(message = "Brand is mandatory")
+    @NotNull(message = "Brand is mandatory")
     private BrandDto brand;
 }

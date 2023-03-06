@@ -3,7 +3,7 @@ import { Action, State, StateContext } from '@ngxs/store';
 import { Category } from "../../entity/entity";
 import {
   AddCategory,
-  CategoryActionFailed,
+  FailedCategoryAction,
   DeleteCategory,
   FetchAllCategories,
   UpdateCategory,
@@ -43,7 +43,7 @@ export class CategoryState {
           this.toastr.success('New Category entity created.', 'Success!');
         }),
         mergeMap(() => context.dispatch(new FetchAllCategories())),
-        catchError(error => context.dispatch(new CategoryActionFailed(AddCategory.type, error))),
+        catchError(error => context.dispatch(new FailedCategoryAction(AddCategory.type, error))),
       );
   }
 
@@ -59,7 +59,7 @@ export class CategoryState {
           this.toastr.success('Category entity updated.', 'Success!');
         }),
         mergeMap(() => context.dispatch(new FetchAllCategories())),
-        catchError(error => context.dispatch(new CategoryActionFailed(UpdateCategory.type, error))),
+        catchError(error => context.dispatch(new FailedCategoryAction(UpdateCategory.type, error))),
       );
   }
 
@@ -72,12 +72,12 @@ export class CategoryState {
             entities: [...Categorys],
           });
         }),
-        catchError(error => context.dispatch(new CategoryActionFailed(FetchAllCategories.type, error))),
+        catchError(error => context.dispatch(new FailedCategoryAction(FetchAllCategories.type, error))),
       );
   }
 
-  @Action(CategoryActionFailed)
-  failedCategoryAction(context: StateContext<CategoryStateModel>, action: CategoryActionFailed) {
+  @Action(FailedCategoryAction)
+  failedCategoryAction(context: StateContext<CategoryStateModel>, action: FailedCategoryAction) {
     context.patchState({
       error: action.error,
     });
@@ -96,7 +96,7 @@ export class CategoryState {
           this.toastr.success('Category entity deleted.', 'Success!');
         }),
         mergeMap(() => context.dispatch(new FetchAllCategories())),
-        catchError(error => context.dispatch(new CategoryActionFailed(DeleteCategory.type, error))),
+        catchError(error => context.dispatch(new FailedCategoryAction(DeleteCategory.type, error))),
       );
   }
 }

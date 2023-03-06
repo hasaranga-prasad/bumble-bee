@@ -32,7 +32,7 @@ export class FetchCategoryById {
   }
 }
 
-export class CategoryActionFailed {
+export class FailedCategoryAction {
   static readonly type = '[Category] Failed';
 
   constructor(public type: string, public error?: any) {

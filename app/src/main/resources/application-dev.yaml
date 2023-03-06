@@ -11,6 +11,7 @@ spring:
   application:
     name: bumble-bee-loan-service
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: update
     properties:

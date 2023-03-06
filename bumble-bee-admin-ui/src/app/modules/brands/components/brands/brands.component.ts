@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Brand } from "../../../../entity/entity";
-import { BrandService } from "../../services/brand.service";
 import { MatTableDataSource } from "@angular/material/table";
 import { Observable, Subscription } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
@@ -23,7 +22,7 @@ export class BrandsComponent implements OnInit, OnDestroy {
 
   private subscription?: Subscription;
 
-  constructor(private service: BrandService, public dialog: MatDialog, private store: Store) {
+  constructor(public dialog: MatDialog, private store: Store) {
     this._brands = this.store.select(state => state.brands.entities);
   }
 
