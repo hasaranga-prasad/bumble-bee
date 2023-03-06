@@ -1,14 +1,17 @@
 /* Column Widths */
 .mat-column-edit,
 .mat-column-delete {
-  max-width: 24px;
+  max-width: 70px;
 }
 
 .mat-column-id {
-  max-width: 14px;
+  max-width: 54px;
 }
 
+.mat-column-name {
+  max-width: 200px;
+}
 
 .mat-column-description {
-  max-width: 200px;
+
 }

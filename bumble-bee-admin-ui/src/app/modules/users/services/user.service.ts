@@ -10,6 +10,6 @@ import { environment } from "../../../../environments/environment";
 export class UserService extends AbstractBumbleBeeService<User> {
 
   constructor(private http: HttpClient) {
-    super(http, environment.api.endpoints.brands);
+    super(http, environment.api.endpoints.users);
   }
 }

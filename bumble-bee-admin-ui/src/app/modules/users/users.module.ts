@@ -7,11 +7,13 @@ import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from "@angular/material/table";
+import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 
 
 @NgModule({
   declarations: [
     UsersComponent,
+    UserDialogComponent,
   ],
   imports: [
     CommonModule,
