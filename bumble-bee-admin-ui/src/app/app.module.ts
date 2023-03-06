@@ -23,6 +23,8 @@ import { ToastrModule } from "ngx-toastr";
 import { CategoryState } from "./modules/categories/category.state";
 import { ProductState } from "./modules/products/product.state";
 import { UserState } from "./modules/users/user.state";
+import { appInterceptorProviders } from "./services/error.interseptor";
+import { AppState } from "./state/app.state";
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { UserState } from "./modules/users/user.state";
     HttpClientModule,
     MatDialogModule,
     NgxsModule.forRoot([
+      AppState,
       BrandState,
       CategoryState,
       ProductState,
@@ -53,7 +56,9 @@ import { UserState } from "./modules/users/user.state";
     ]),
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [],
+  providers: [
+    appInterceptorProviders,
+  ],
   bootstrap: [AppComponent],
   exports: [ConfirmationDialogComponent],
 })

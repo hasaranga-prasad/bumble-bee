@@ -1,11 +1,17 @@
 package com.bumble.bee.app.models.dao;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.*;
 
-@Data
+@Getter
+@Setter
+@ToString(exclude = {"products"})
+@EqualsAndHashCode(of = {"id"})
 @jakarta.persistence.Entity
 public class Brand implements Entity<Long> {
 

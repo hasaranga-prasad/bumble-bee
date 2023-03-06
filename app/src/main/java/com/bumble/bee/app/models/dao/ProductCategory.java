@@ -1,11 +1,17 @@
 package com.bumble.bee.app.models.dao;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.*;
 
-@Data
+@Getter
+@Setter
+@ToString(exclude = {"products"})
+@EqualsAndHashCode(of = {"id"})
 @jakarta.persistence.Entity
 public class ProductCategory implements Entity<Long> {
     @Id
@@ -18,7 +24,7 @@ public class ProductCategory implements Entity<Long> {
     @Column(length = 512)
     private String description;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Product> products;
 
     @Override

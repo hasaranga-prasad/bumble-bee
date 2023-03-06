@@ -1,1 +1,49 @@
-<p>product-dialog works!</p>
+<div class="dialog-container">
+  <h2 mat-dialog-title>Product</h2>
+  <mat-dialog-content class="mat-typography pt-2">
+    <form [formGroup]="formGroup" (submit)="save()">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" placeholder="Enter name">
+      </mat-form-field>
+
+
+      <div class="d-flex gap-2">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Select brand</mat-label>
+          <mat-select formControlName="brand" [(ngModel)]="selectedBrand">
+            <mat-option *ngFor="let brand of _brands" [value]="brand.id">
+              {{ brand?.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Select category</mat-label>
+          <mat-select formControlName="category" [(ngModel)]="selectedCategory">
+            <mat-option *ngFor="let category of _categories" [value]="category.id">
+              {{ category?.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Price</mat-label>
+        <input type="number" matInput formControlName="price" placeholder="Enter price">
+      </mat-form-field>
+
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput rows="6" formControlName="description" placeholder="Enter description"></textarea>
+      </mat-form-field>
+
+    </form>
+
+    <mat-dialog-actions align="end" class="pe-0">
+      <button mat-stroked-button class="app-button" (click)="cancel()">Discard</button>
+      <button mat-raised-button color="primary" class="app-button" (click)="save()">Save</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+</div>
